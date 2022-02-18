@@ -74,6 +74,17 @@ public class Acceuil extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
+		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Supprimer un Donneur");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Modifierun Donneur
+				new SupprimerDonneur().setVisible(true);
+
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_8);
+		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Liste des donneurs");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -105,11 +116,18 @@ public class Acceuil extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
-		JMenu mnNewMenu_2 = new JMenu("Optimisation");
-		menuBar.add(mnNewMenu_2);
-		
+
 		JMenu mnNewMenu_3 = new JMenu("Stock");
 		menuBar.add(mnNewMenu_3);
+		
+		//Affichier le stock
+		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Afichier le stock");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Stock().setVisible(true);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_9);
 		
 		JMenu mnNewMenu_4 = new JMenu("Quitter");
 		menuBar.add(mnNewMenu_4);

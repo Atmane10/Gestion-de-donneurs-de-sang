@@ -52,7 +52,7 @@ public class Stock extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Listes des donneurs");
+		JLabel lblNewLabel = new JLabel("Stock disponible");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setBounds(402, 45, 202, 33);
