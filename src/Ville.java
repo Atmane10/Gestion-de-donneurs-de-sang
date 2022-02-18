@@ -6,6 +6,7 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
@@ -18,13 +19,17 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
-public class ListeDonneur extends JFrame {
+public class Ville extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	DefaultTableModel model;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -33,7 +38,7 @@ public class ListeDonneur extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListeDonneur frame = new ListeDonneur();
+					Ville frame = new Ville();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +50,7 @@ public class ListeDonneur extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListeDonneur() {
+	public Ville() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 601);
 		contentPane = new JPanel();
@@ -53,10 +58,10 @@ public class ListeDonneur extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Listes des donneurs");
+		JLabel lblNewLabel = new JLabel("Chercher un donneur selon la ville");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(402, 45, 202, 33);
+		lblNewLabel.setBounds(97, 40, 319, 33);
 		contentPane.add(lblNewLabel);
 		
 		//imprimer la liste des donneurs
@@ -136,7 +141,33 @@ public class ListeDonneur extends JFrame {
 		btnAffichier.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAffichier.setBounds(605, 45, 122, 25);
 		contentPane.add(btnAffichier);
+		
+		//insérer la ville à chercher
+		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String location = textField.getText();
+					try {					
+					Connection con = connectionProvider.getCon();
+					Statement st =con.createStatement();
+					ResultSet rs =st.executeQuery("select *from donneur");
+					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+					//con.mysql.jdbc.GoogleDriver
+					}
+				catch(Exception eee) 
+				{
+				JOptionPane.showMessageDialog(null, eee);
+				}
+			}
+		});
+		textField.setBounds(394, 46, 202, 23);
+		contentPane.add(textField);
+		textField.setColumns(10);
 
 	
 	}
 }
+

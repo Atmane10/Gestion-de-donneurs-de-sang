@@ -87,7 +87,13 @@ public class Acceuil extends JFrame {
 		JMenu mnNewMenu_1 = new JMenu("Chercher un donneur");
 		menuBar.add(mnNewMenu_1);
 		
+		//Chercher donneur selon la ville
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Selon la ville");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Ville().setVisible(true);
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Selon le groupe sanguin ");
