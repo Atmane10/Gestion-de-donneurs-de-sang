@@ -23,13 +23,13 @@ import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-@SuppressWarnings("serial")
-public class Ville extends JFrame {
+public class Groupe extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	DefaultTableModel model;
 	private JTextField textField;
+
 
 	/**
 	 * Launch the application.
@@ -38,7 +38,7 @@ public class Ville extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ville frame = new Ville();
+					Groupe frame = new Groupe();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class Ville extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ville() {
+	public Groupe() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 997, 601);
 		contentPane = new JPanel();
@@ -58,10 +58,10 @@ public class Ville extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Chercher un donneur selon la ville");
+		JLabel lblNewLabel = new JLabel("Chercher un donneur selon le groupe sanguin");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(97, 40, 319, 33);
+		lblNewLabel.setBounds(97, 40, 399, 33);
 		contentPane.add(lblNewLabel);
 		
 		//imprimer la liste des donneurs
@@ -124,8 +124,7 @@ public class Ville extends JFrame {
 					ResultSet rs =st.executeQuery("select *from donneur");
 					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					//con.mysql.jdbc.GoogleDriver
+
 					}
 				catch(Exception eee) 
 				{
@@ -133,7 +132,7 @@ public class Ville extends JFrame {
 				}
 		}});
 		btnAffichier.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnAffichier.setBounds(605, 45, 122, 25);
+		btnAffichier.setBounds(718, 45, 122, 25);
 		contentPane.add(btnAffichier);
 		
 		//insérer la ville à chercher
@@ -141,11 +140,11 @@ public class Ville extends JFrame {
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				String ville = textField.getText();
+				String groupeSanguin = textField.getText();
 				try {					
 					Connection con = connectionProvider.getCon();
 					Statement st =con.createStatement();
-					ResultSet rs =st.executeQuery("select *from donneur where ville like'%"+ville+"%'");
+					ResultSet rs =st.executeQuery("select *from donneur where groupeSanguin like'%"+groupeSanguin+"%'");
 					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					
@@ -157,11 +156,10 @@ public class Ville extends JFrame {
 				}
 			}
 		});
-		textField.setBounds(394, 46, 202, 23);
+		textField.setBounds(506, 47, 202, 23);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 	
 	}
 }
-

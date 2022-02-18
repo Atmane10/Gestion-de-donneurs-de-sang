@@ -96,7 +96,13 @@ public class Acceuil extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
+		//Chercher un donneur selon le goupeSanguin
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Selon le groupe sanguin ");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Groupe().setVisible(true);
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
 		JMenu mnNewMenu_2 = new JMenu("Optimisation");
