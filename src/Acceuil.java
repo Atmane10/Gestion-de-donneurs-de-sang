@@ -64,6 +64,16 @@ public class Acceuil extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
+		/*JMenuItem mntmNewMenuItem1 = new JMenuItem("Ajouter une photo");
+		mntmNewMenuItem1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Ajouter un Donneur
+				new AjouterDonneur().setVisible(true);
+
+			}
+		});*/
+		mnNewMenu.add(mntmNewMenuItem);
+		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modifier un Donneur");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

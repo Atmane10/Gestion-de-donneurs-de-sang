@@ -6,6 +6,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Atmane/Desktop/mysql-connector-java-8.0.27.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Atmane/Desktop/2021-Atmane-Abidar/src/libs/rs2xml.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
