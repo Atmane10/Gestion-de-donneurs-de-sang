@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.*;
 import Projet.connectionProvider;
 import net.proteanit.sql.DbUtils;
@@ -19,27 +17,12 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class Stock extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	DefaultTableModel model;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Stock frame = new Stock();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -97,10 +80,12 @@ public class Stock extends JFrame {
 		scrollPane.setBounds(10, 10, 943, 412);
 		panel.add(scrollPane);
 		
+		//Creation de la table
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		model = new DefaultTableModel();
 		Object[] column = {"numéro du donneur","Nom","Prénom","Genre","Groupe sanguin","Télephone portable","Email","Ville","Age"};
+		@SuppressWarnings("unused")
 		Object[] row = new Object[0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
@@ -109,17 +94,14 @@ public class Stock extends JFrame {
 		//Affichier la liste des donneurs
 		JButton btnAffichier = new JButton("Affichier");
 		btnAffichier.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent e) {			
+				try {			
 					Connection con = connectionProvider.getCon();
 					Statement st =con.createStatement();
 					ResultSet rs =st.executeQuery("select *from donneur");
 					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					//con.mysql.jdbc.GoogleDriver
 					}
 				catch(Exception eee) 
 				{
@@ -128,8 +110,6 @@ public class Stock extends JFrame {
 		}});
 		btnAffichier.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAffichier.setBounds(605, 45, 122, 25);
-		contentPane.add(btnAffichier);
-
-	
+		contentPane.add(btnAffichier);	
 	}
 }

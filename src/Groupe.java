@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.*;
 import Projet.connectionProvider;
 import net.proteanit.sql.DbUtils;
@@ -25,27 +23,14 @@ import java.awt.event.KeyEvent;
 
 public class Groupe extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	DefaultTableModel model;
 	private JTextField textField;
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Groupe frame = new Groupe();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -58,6 +43,7 @@ public class Groupe extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//label: Chercher un donneur selon le groupe sanguin
 		JLabel lblNewLabel = new JLabel("Chercher un donneur selon le groupe sanguin");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setForeground(Color.BLACK);
@@ -103,28 +89,26 @@ public class Groupe extends JFrame {
 		scrollPane.setBounds(10, 10, 943, 412);
 		panel.add(scrollPane);
 		
+		//Creation de la table
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		model = new DefaultTableModel();
 		Object[] column = {"numÃ©ro du donneur","Nom","PrÃ©nom","Genre","Groupe sanguin","TÃ©lephone portable","Email","Ville","Age"};
+		@SuppressWarnings("unused")
 		Object[] row = new Object[0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		
-		
 		//Affichier la liste des donneurs
 		JButton btnAffichier = new JButton("Affichier");
 		btnAffichier.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {		
 				try {
-
 					Connection con = connectionProvider.getCon();
 					Statement st =con.createStatement();
 					ResultSet rs =st.executeQuery("select *from donneur");
-					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
+					table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-
 					}
 				catch(Exception eee) 
 				{
@@ -135,7 +119,7 @@ public class Groupe extends JFrame {
 		btnAffichier.setBounds(718, 45, 122, 25);
 		contentPane.add(btnAffichier);
 		
-		//insérer la ville à chercher
+		//insérer le groupe sanguin à chercher
 		textField = new JTextField();
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -145,10 +129,8 @@ public class Groupe extends JFrame {
 					Connection con = connectionProvider.getCon();
 					Statement st =con.createStatement();
 					ResultSet rs =st.executeQuery("select *from donneur where groupeSanguin like'%"+groupeSanguin+"%'");
-					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
+					table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					//con.mysql.jdbc.GoogleDriver
 					}
 				catch(Exception eee) 
 				{
@@ -158,8 +140,6 @@ public class Groupe extends JFrame {
 		});
 		textField.setBounds(506, 47, 202, 23);
 		contentPane.add(textField);
-		textField.setColumns(10);
-
-	
+		textField.setColumns(10);	
 	}
 }

@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.*;
 import Projet.connectionProvider;
 import net.proteanit.sql.DbUtils;
@@ -25,23 +23,7 @@ public class ListeDonneur extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	DefaultTableModel model;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListeDonneur frame = new ListeDonneur();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -70,8 +52,7 @@ public class ListeDonneur extends JFrame {
 				catch(Exception ee)
 				{
 					JOptionPane.showMessageDialog(null, ee);
-				}
-				
+				}			
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -98,35 +79,27 @@ public class ListeDonneur extends JFrame {
 		scrollPane.setBounds(10, 10, 943, 412);
 		panel.add(scrollPane);
 		
+		//Création de la table
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		model = new DefaultTableModel();
 		Object[] column = {"numÃ©ro du donneur","Nom","PrÃ©nom","Genre","Groupe sanguin","TÃ©lephone portable","Email","Ville","Age"};
+		@SuppressWarnings("unused")
 		Object[] row = new Object[0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
-		
-		
+			
 		//Affichier la liste des donneurs
 		JButton btnAffichier = new JButton("Affichier");
 		btnAffichier.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent e) {				
 				try {
-					
-					/*try {
-						Connection con = connectionProvider.getCon();
-						Statement s =con.createStatement();
-						s.executeUpdate("insert into donneur values('"+numeroDonneur+"','"+nom+"','"+prenom+"','"+genre+"','"+groupeSanguin+"','"+telephonePortable+"','"+email+"','"+ville+"','"+age+"')");
-						JOptionPane.showMessageDialog(null, "Mise à jour réussie");
-					*/
 					Connection con = connectionProvider.getCon();
 					Statement st =con.createStatement();
 					ResultSet rs =st.executeQuery("select *from donneur");
 					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					//con.mysql.jdbc.GoogleDriver
 					}
 				catch(Exception eee) 
 				{
@@ -135,8 +108,6 @@ public class ListeDonneur extends JFrame {
 		}});
 		btnAffichier.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAffichier.setBounds(605, 45, 122, 25);
-		contentPane.add(btnAffichier);
-
-	
+		contentPane.add(btnAffichier);	
 	}
 }

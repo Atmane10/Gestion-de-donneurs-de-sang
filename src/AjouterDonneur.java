@@ -1,11 +1,9 @@
-import java.awt.EventQueue;
 import java.sql.*;
 import Projet.connectionProvider;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -18,10 +16,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.awt.Color;
 
@@ -40,23 +34,6 @@ public class AjouterDonneur extends JFrame {
 	private JLabel url;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AjouterDonneur frame3 = new AjouterDonneur();
-					frame3.setUndecorated(true); // Supprimer la barre de titre
-					frame3.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -70,43 +47,53 @@ public class AjouterDonneur extends JFrame {
 		contentPane.setLayout(null);
 
 		
+		//Ajouter un nouveau donneur
 		JLabel lblNewLabel = new JLabel("Ajouter un nouveau donneur");
 		lblNewLabel.setBounds(127, 43, 223, 19);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblNewLabel);
 		
+		//Numéro du donneur
 		JLabel lblNewLabel_1 = new JLabel("Num\u00E9ro du donneur");
 		lblNewLabel_1.setBounds(73, 110, 138, 13);
 		contentPane.add(lblNewLabel_1);
 		
+		//Nom du donneur
 		JLabel lblNewLabel_2 = new JLabel("Nom du donneur");
 		lblNewLabel_2.setBounds(73, 150, 138, 13);
 		contentPane.add(lblNewLabel_2);
-		
+
+		//prénom du donneur
 		JLabel lblNewLabel_3 = new JLabel("Pr\u00E9nom du donneur");
 		lblNewLabel_3.setBounds(73, 190, 138, 13);
 		contentPane.add(lblNewLabel_3);
 		
+		//Age du donneur
 		JLabel lblNewLabel_9 = new JLabel("\u00C2ge");
 		lblNewLabel_9.setBounds(73, 430, 138, 19);
 		contentPane.add(lblNewLabel_9);
 		
+		//genre du donneur
 		JLabel lblNewLabel_4 = new JLabel("Genre");
 		lblNewLabel_4.setBounds(73, 230, 138, 13);
 		contentPane.add(lblNewLabel_4);
 		
+		//Numéro de télephone
 		JLabel lblNewLabel_6 = new JLabel("T\u00E9lephone portable");
 		lblNewLabel_6.setBounds(73, 310, 138, 13);
 		contentPane.add(lblNewLabel_6);
 		
+		//Email du donneur
 		JLabel lblNewLabel_7 = new JLabel("Email");
 		lblNewLabel_7.setBounds(73, 350, 138, 13);
 		contentPane.add(lblNewLabel_7);
 		
+		//Ville du donneur
 		JLabel lblNewLabel_8 = new JLabel("Ville");
 		lblNewLabel_8.setBounds(73, 390, 138, 13);
 		contentPane.add(lblNewLabel_8);
 		
+		//Groupe sanguin du donneur
 		JLabel lblNewLabel_5 = new JLabel("Groupe sanguin");
 		lblNewLabel_5.setBounds(73, 270, 138, 13);
 		contentPane.add(lblNewLabel_5);
@@ -115,31 +102,6 @@ public class AjouterDonneur extends JFrame {
 		txtNumero.setBounds(232, 107, 162, 19);
 		contentPane.add(txtNumero);
 		txtNumero.setColumns(10);
-		
-		/*txtNumero.addComponentListener(new ComponentAdapter() {
-			public void formcomponentShown(ComponentEvent ee) {
-				
-				try {
-					// Enregistrer les données dans db
-					Connection con = connectionProvider.getCon();
-					Statement s =con.createStatement();
-					ResultSet r =s.executeQuery("Select max (numeroDonneur) from donneur");
-					if(r.first()) {
-						int i = r.getInt(1);
-						i = i+1;
-						String a = String.valueOf(i);
-						txtNumero.setText(a);
-						
-					}else 
-					txtNumero.setText("1");
-					}
-					catch(Exception ee1) 
-					{
-						JOptionPane.showMessageDialog(null, ee1);
-						}
-			}}
-			
-		);*/
 
 		txtNom = new JTextField();
 		txtNom.setBounds(232, 150, 162, 19);
@@ -178,28 +140,25 @@ public class AjouterDonneur extends JFrame {
 		
 		JComboBox<?> comboBoxGenre = new JComboBox();
 		comboBoxGenre.setBounds(232, 230, 162, 21);
-		comboBoxGenre.setModel(new DefaultComboBoxModel(new String[] {"F\u00E9minin", "Masculin", "Autre"}));
+		comboBoxGenre.setModel(new DefaultComboBoxModel(new String[] {"F\u00E9minin", "Masculin"}));
 		contentPane.add(comboBoxGenre);
 		
 		//Button pour choisir la photo
-				JButton btnImage = new JButton("Photo");
-				btnImage.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						// Ajouter une photo
-
-						JFileChooser chooser = new JFileChooser();
-						chooser.showOpenDialog(null);
-						File f=chooser.getSelectedFile();
-						filename=f.getAbsolutePath();
-						url.setText(filename);
-						@SuppressWarnings("unused")
-						Image getabsolutePath=null;
-						ImageIcon icon = new ImageIcon(filename);
-						//Image image =icon.getImage().getScaledInstance(labelPhoto.getWidth(), labelPhoto.getHeight(),Image.SCALE_SMOOTH);
-						//labelPhoto .setIcon(icon);
-
-					}
-				});
+		JButton btnImage = new JButton("Photo");
+		btnImage.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					// Ajouter une photo
+					JFileChooser chooser = new JFileChooser();
+					chooser.showOpenDialog(null);
+					File f=chooser.getSelectedFile();
+					filename=f.getAbsolutePath();
+					url.setText(filename);
+					@SuppressWarnings("unused")
+					Image getabsolutePath=null;
+					@SuppressWarnings("unused")
+					ImageIcon icon = new ImageIcon(filename);
+				}
+		});
 				btnImage.setBackground(Color.WHITE);
 				btnImage.setBounds(63, 466, 110, 21);
 				contentPane.add(btnImage);
@@ -223,8 +182,6 @@ public class AjouterDonneur extends JFrame {
 				String genre = (String)comboBoxGenre.getSelectedItem();
 				String groupeSanguin = (String)comboBoxGroupeSanguin.getSelectedItem();
 				String image = url.getText();
-				//image = image.replace("\\", "\\\\");
-				//System.out.println(image);
 				
 				// Enregistrer les données dans db
 				try {
@@ -237,10 +194,7 @@ public class AjouterDonneur extends JFrame {
 				}
 				catch(Exception ee) {
 					JOptionPane.showMessageDialog(null, ee);
-				}
-
-
-				
+				}				
 			}
 		});
 		contentPane.add(btnNewButton);
@@ -267,33 +221,5 @@ public class AjouterDonneur extends JFrame {
 		});
 		contentPane.add(btnRinitialiser);
 		
-		
-		
-		
-		//button to browse the image into jlabel
-		/*JButton btnImage = new JButton("Photo");
-		btnImage.addActionListener(new ActionListener(){
-	        @Override
-	     public void actionPerformed(ActionEvent e){
-	         JFileChooser fileChooser = new JFileChooser();
-	         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-	         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg","gif","png");
-	         fileChooser.addChoosableFileFilter(filter);
-	         int result = fileChooser.showSaveDialog(null);
-	         if(result == JFileChooser.APPROVE_OPTION){
-	             File selectedFile = fileChooser.getSelectedFile();
-	             String path = selectedFile.getAbsolutePath();
-	             //label.setIcon(ResizeImage(path));
-	             //s = path;
-	              }
-	         else if(result == JFileChooser.CANCEL_OPTION){
-	             System.out.println("No Data");
-	         }
-	     }
-	    });*/
-		
-		
-		
-
 	}
 }

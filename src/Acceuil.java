@@ -1,5 +1,3 @@
-import java.awt.EventQueue;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,27 +12,7 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class Acceuil extends JFrame {
-
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Acceuil frame2 = new Acceuil();
-					frame2.setVisible(true);
-					frame2.setLocationRelativeTo(null);  // Fait apparaître la fenêtre au centre du premier affichage
-					frame2.setResizable(false); //frame size fixed
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -54,55 +32,40 @@ public class Acceuil extends JFrame {
 		JMenu mnNewMenu = new JMenu("Donneur");
 		menuBar.add(mnNewMenu);
 		
+		//Ajouter un donneur
 		JMenuItem mntmNewMenuItem = new JMenuItem("Ajouter un Donneur");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Ajouter un Donneur
 				new AjouterDonneur().setVisible(true);
-
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
-		/*JMenuItem mntmNewMenuItem1 = new JMenuItem("Ajouter une photo");
-		mntmNewMenuItem1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Ajouter un Donneur
-				new AjouterDonneur().setVisible(true);
-
-			}
-		});*/
-		mnNewMenu.add(mntmNewMenuItem);
-		
+		//Modifier un donneur
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modifier un Donneur");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Modifierun Donneur
 				new ModifierDonneur().setVisible(true);
-
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
-		
+		//Modifierun Donneur
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Supprimer un Donneur");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Modifierun Donneur
 				new SupprimerDonneur().setVisible(true);
-
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_8);
 		
+		//Liste des donneurs
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Liste des donneurs");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Liste des donneurs
 				new ListeDonneur().setVisible(true);
 			}
-		});
-		
+		});	
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
 		JMenu mnNewMenu_1 = new JMenu("Chercher un donneur");
@@ -139,9 +102,6 @@ public class Acceuil extends JFrame {
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_9);
 		
-		JMenu mnNewMenu_4 = new JMenu("Quitter");
-		menuBar.add(mnNewMenu_4);
-		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Se d\u00E9connecter");
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -153,8 +113,12 @@ public class Acceuil extends JFrame {
 					}
 				}
 		});
+		
+		JMenu mnNewMenu_4 = new JMenu("Quitter");
+		menuBar.add(mnNewMenu_4);
 		mnNewMenu_4.add(mntmNewMenuItem_5);
 		
+		//Quitter l'application
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Quitter l'application");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

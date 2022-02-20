@@ -53,6 +53,7 @@ public class Login extends JFrame {
 		lblUser.setBounds(110, 58, 140, 13);
 		contentPane.add(lblUser);
 		
+		//Nom d'utilisateur
 		txtUser = new JTextField();
 		txtUser.setColumns(10);
 		txtUser.setBounds(110, 74, 220, 19);
@@ -62,11 +63,13 @@ public class Login extends JFrame {
 		lblPassword.setBounds(110, 114, 140, 13);
 		contentPane.add(lblPassword);
 		
+		//Mot de passe de l'utilisateur
 		txtPassword = new JTextField();
 		txtPassword.setColumns(10);
 		txtPassword.setBounds(110, 129, 220, 19);
 		contentPane.add(txtPassword);
 		
+		//Annuler la connexion
 		JButton btnAnnuler = new JButton("Annuler");
 		btnAnnuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -79,6 +82,7 @@ public class Login extends JFrame {
 		btnAnnuler.setBounds(110, 190, 97, 21);
 		contentPane.add(btnAnnuler);
 		
+		//Valider la connexion
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +90,7 @@ public class Login extends JFrame {
 				if( txtUser.getText().equals("INSSET") && txtPassword.getText().equals("INSSET")) {
 			         Acceuil Acceuil = new Acceuil();
 			         Acceuil.setVisible(true);
-			         dispose();//To close the current window
+			         dispose();
 				}else{
 					        JOptionPane.showMessageDialog(null, " Le nom d'utilisateur ou le mot de passe est incorrect ");
 					    }

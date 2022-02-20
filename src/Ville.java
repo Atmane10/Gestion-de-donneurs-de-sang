@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.*;
 import Projet.connectionProvider;
 import net.proteanit.sql.DbUtils;
@@ -30,22 +28,6 @@ public class Ville extends JFrame {
 	private JTable table;
 	DefaultTableModel model;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ville frame = new Ville();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -107,38 +89,15 @@ public class Ville extends JFrame {
 		scrollPane.setViewportView(table);
 		model = new DefaultTableModel();
 		Object[] column = {"num√©ro du donneur","Nom","Pr√©nom","Genre","Groupe sanguin","T√©lephone portable","Email","Ville","Age"};
+		@SuppressWarnings("unused")
 		Object[] row = new Object[0];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		
-		
-		//Affichier la liste des donneurs
-		JButton btnAffichier = new JButton("Affichier");
-		btnAffichier.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-
-					Connection con = connectionProvider.getCon();
-					Statement st =con.createStatement();
-					ResultSet rs =st.executeQuery("select *from donneur");
-					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					//con.mysql.jdbc.GoogleDriver
-					}
-				catch(Exception eee) 
-				{
-				JOptionPane.showMessageDialog(null, eee);
-				}
-		}});
-		btnAffichier.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnAffichier.setBounds(605, 45, 122, 25);
-		contentPane.add(btnAffichier);
-		
 		//insÈrer la ville ‡ chercher
 		textField = new JTextField();
 		textField.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String ville = textField.getText();
@@ -148,8 +107,7 @@ public class Ville extends JFrame {
 					ResultSet rs =st.executeQuery("select *from donneur where ville like'%"+ville+"%'");
 					table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					//con.mysql.jdbc.GoogleDriver
+
 					}
 				catch(Exception eee) 
 				{

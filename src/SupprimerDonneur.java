@@ -1,4 +1,3 @@
-import java.awt.EventQueue;
 import java.sql.*;
 import Projet.connectionProvider;
 
@@ -14,15 +13,15 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.Color;
 
 
 public class SupprimerDonneur extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtNumero;
 	private JTextField txtNom;
@@ -31,23 +30,6 @@ public class SupprimerDonneur extends JFrame {
 	private JTextField txtTelephonePortable;
 	private JTextField txtEmail;
 	private JTextField txtVille;
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SupprimerDonneur frame = new SupprimerDonneur();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -61,7 +43,6 @@ public class SupprimerDonneur extends JFrame {
 	setContentPane(contentPane);
 	contentPane.setLayout(null);
 
-	
 	JLabel lblNewLabel = new JLabel("Supprimer un Donneur");
 	lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 	lblNewLabel.setBounds(166, 42, 172, 19);
@@ -105,41 +86,48 @@ public class SupprimerDonneur extends JFrame {
 	lblNewLabel_5.setBounds(73, 270, 138, 13);
 	contentPane.add(lblNewLabel_5);
 	
+	//Numéro du donneur
 	txtNumero = new JTextField();
 	txtNumero.setBounds(203, 77, 61, 19);
 	contentPane.add(txtNumero);
 	txtNumero.setColumns(10);
 	
-
+	//Nom du donneur
 	txtNom = new JTextField();
 	txtNom.setColumns(10);
 	txtNom.setBounds(232, 150, 162, 19);
 	contentPane.add(txtNom);
 	
+	//Prénom du donneur
 	txtPrenom = new JTextField();
 	txtPrenom.setColumns(10);
 	txtPrenom.setBounds(232, 190, 162, 19);
 	contentPane.add(txtPrenom);
 	
+	//Age du donneur
 	txtAge = new JTextField();
 	txtAge.setColumns(10);
 	txtAge.setBounds(232, 430, 162, 19);
 	contentPane.add(txtAge);
 	
+	//Numéro de télephone du donneur 
 	txtTelephonePortable = new JTextField();
 	txtTelephonePortable.setColumns(10);
 	txtTelephonePortable.setBounds(232, 310, 162, 19);
 	contentPane.add(txtTelephonePortable);
 	
+	//Email du donneur
 	txtEmail = new JTextField();
 	txtEmail.setColumns(10);
 	txtEmail.setBounds(232, 350, 162, 19);
 	contentPane.add(txtEmail);
 	
+	//Ville du donneur
 	txtVille = new JTextField();
 	txtVille.setColumns(10);
 	txtVille.setBounds(232, 390, 162, 19);
 	contentPane.add(txtVille);
+	
 	
 	JComboBox<?> comboBoxGroupeSanguin = new JComboBox();
 	comboBoxGroupeSanguin.setModel(new DefaultComboBoxModel(new String[] {"A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"}));
@@ -147,7 +135,7 @@ public class SupprimerDonneur extends JFrame {
 	contentPane.add(comboBoxGroupeSanguin);
 	
 	JComboBox<?> comboBoxGenre = new JComboBox();
-	comboBoxGenre.setModel(new DefaultComboBoxModel(new String[] {"F\u00E9minin", "Masculin", "Autre"}));
+	comboBoxGenre.setModel(new DefaultComboBoxModel(new String[] {"F\u00E9minin", "Masculin"}));
 	comboBoxGenre.setBounds(232, 230, 162, 21);
 	contentPane.add(comboBoxGenre);
 	
@@ -167,14 +155,10 @@ public class SupprimerDonneur extends JFrame {
 			}
 			catch(Exception ee) {
 				JOptionPane.showMessageDialog(null, "Erreur de connection");
-			}
-
-
-			
+			}		
 		}
 	});
 	
-
 	btnNewButton.setBounds(63, 497, 110, 21);
 	contentPane.add(btnNewButton);
 	
@@ -194,7 +178,6 @@ public class SupprimerDonneur extends JFrame {
 			//réinitialiser
 			setVisible(false);
 			new SupprimerDonneur().setVisible(true);
-
 		}
 	});
 	btnRinitialiser.setBounds(178, 497, 110, 21);
@@ -230,9 +213,5 @@ public class SupprimerDonneur extends JFrame {
 	btnNewButton_1.setForeground(new Color(128, 0, 0));
 	btnNewButton_1.setBounds(294, 76, 100, 21);
 	contentPane.add(btnNewButton_1);
-	
-	
-	
-
 }
 }

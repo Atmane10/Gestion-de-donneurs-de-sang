@@ -18,12 +18,9 @@ import java.awt.Color;
 import java.sql.*;
 import Projet.connectionProvider;
 
-
-
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class ModifierDonneur extends JFrame {
-	
-	//private JPanel contentPane;
+
 	private JTextField txtNumero;
 	private JTextField txtNom;
 	private JTextField txtPrenom;
@@ -31,29 +28,7 @@ public class ModifierDonneur extends JFrame {
 	private JTextField txtTelephonePortable;
 	private JTextField txtEmail;
 	private JTextField txtVille;
-
-
-	/**
-	 * 
-	 */
-
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ModifierDonneur frame = new ModifierDonneur();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -68,7 +43,6 @@ public class ModifierDonneur extends JFrame {
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
 
-			
 			JLabel lblNewLabel = new JLabel("Modifier un Donneur");
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblNewLabel.setBounds(166, 42, 150, 19);
@@ -112,37 +86,43 @@ public class ModifierDonneur extends JFrame {
 			lblNewLabel_5.setBounds(73, 270, 138, 13);
 			contentPane.add(lblNewLabel_5);
 			
+			//Numéro donneur
 			txtNumero = new JTextField();
 			txtNumero.setBounds(203, 77, 61, 19);
 			contentPane.add(txtNumero);
 			txtNumero.setColumns(10);
 			
-
+			//Nom du donneur
 			txtNom = new JTextField();
 			txtNom.setColumns(10);
 			txtNom.setBounds(232, 150, 162, 19);
 			contentPane.add(txtNom);
 			
+			//Prénom du donneur
 			txtPrenom = new JTextField();
 			txtPrenom.setColumns(10);
 			txtPrenom.setBounds(232, 190, 162, 19);
 			contentPane.add(txtPrenom);
 			
+			//Age du donneur
 			txtAge = new JTextField();
 			txtAge.setColumns(10);
 			txtAge.setBounds(232, 430, 162, 19);
 			contentPane.add(txtAge);
 			
+			//Numéro du télephone du donneur
 			txtTelephonePortable = new JTextField();
 			txtTelephonePortable.setColumns(10);
 			txtTelephonePortable.setBounds(232, 310, 162, 19);
 			contentPane.add(txtTelephonePortable);
 			
+			//Email du donneur
 			txtEmail = new JTextField();
 			txtEmail.setColumns(10);
 			txtEmail.setBounds(232, 350, 162, 19);
 			contentPane.add(txtEmail);
 			
+			//Ville du donneur
 			txtVille = new JTextField();
 			txtVille.setColumns(10);
 			txtVille.setBounds(232, 390, 162, 19);
@@ -154,7 +134,7 @@ public class ModifierDonneur extends JFrame {
 			contentPane.add(comboBoxGroupeSanguin);
 			
 			JComboBox<?> comboBoxGenre = new JComboBox();
-			comboBoxGenre.setModel(new DefaultComboBoxModel(new String[] {"F\u00E9minin", "Masculin", "Autre"}));
+			comboBoxGenre.setModel(new DefaultComboBoxModel(new String[] {"F\u00E9minin", "Masculin"}));
 			comboBoxGenre.setBounds(232, 230, 162, 21);
 			contentPane.add(comboBoxGenre);
 			
@@ -172,7 +152,7 @@ public class ModifierDonneur extends JFrame {
 					String genre = (String)comboBoxGenre.getSelectedItem();
 					String groupeSanguin = (String)comboBoxGroupeSanguin.getSelectedItem();
 
-					// Enregistrer les données dans db
+					// Modifier les données dans db
 					try {
 						Connection con = connectionProvider.getCon();
 						Statement s =con.createStatement();
@@ -183,14 +163,10 @@ public class ModifierDonneur extends JFrame {
 					}
 					catch(Exception ee) {
 						JOptionPane.showMessageDialog(null, "Erreur de connection");
-					}
-
-
-					
+					}					
 				}
 			});
 			
-
 			btnNewButton.setBounds(63, 497, 110, 21);
 			contentPane.add(btnNewButton);
 			
@@ -210,7 +186,6 @@ public class ModifierDonneur extends JFrame {
 					//réinitialiser
 					setVisible(false);
 					new ModifierDonneur().setVisible(true);
-
 				}
 			});
 			btnRinitialiser.setBounds(178, 497, 110, 21);
@@ -240,15 +215,10 @@ public class ModifierDonneur extends JFrame {
 					    }
 					 catch (Exception er) {
 						er.printStackTrace();
-					}
-				
+					}			
 			}});
 			btnNewButton_1.setForeground(new Color(128, 0, 0));
 			btnNewButton_1.setBounds(294, 76, 100, 21);
 			contentPane.add(btnNewButton_1);
-			
-			
-			
-
 		}
 	}
